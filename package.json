@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.7.2",
-    "mssql": "^11.0.1"
-  },
-  "devDependencies": {}
+    "mssql": "^11.0.1",
+    "nodemailer": "^10.3.0"
+  }
 }
