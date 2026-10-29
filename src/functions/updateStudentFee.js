@@ -1,12 +1,21 @@
 const { app } = require("@azure/functions");
 const { sql, withSqlRetry } = require("../shared/db");
 const { jsonResponse, logSafeError } = require("../shared/http");
+const { authorizeAdmin } = require("../shared/adminAuth");
 
 app.http("updateStudentFee", {
   methods: ["PUT"],
   authLevel: "function",
   route: "students/{studentId:int}/fee-update",
   handler: async (request, context) => {
+
+    // Verify the caller's authorization
+    const authorization = await authorizeAdmin(request, context);
+
+    if (!authorization.authorized) {
+      return authorization.response;
+    }
+
     const studentId = Number(request.params.studentId);
     if (!Number.isSafeInteger(studentId) || studentId <= 0) {
       return jsonResponse(400, { error: "studentId must be a positive integer." });
