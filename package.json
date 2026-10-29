@@ -1,0 +1,19 @@
+{
+  "name": "azure-fee-management-functions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions HTTP APIs for a student fee management system",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "start": "func start",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.2",
+    "mssql": "^11.0.1"
+  },
+  "devDependencies": {}
+}
